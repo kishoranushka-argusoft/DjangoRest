@@ -8,6 +8,8 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from employee.models import Employee
 from django.http import Http404
+from blogs.models import Blog, Comment
+from blogs.serializers import BlogSerializer, CommentSerializer
 
 # Create your views here.
 # def student_view(request):
@@ -186,3 +188,13 @@ class EmployeeViewSet(viewsets.ViewSet):
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = employeeSerializer
+
+
+class BlogsView(generics.ListCreateAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
+
+class CommentsView(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
